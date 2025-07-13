@@ -1,11 +1,11 @@
-# Use Maven image to build the app
-FROM maven:3.9.6-eclipse-temurin-17 AS builder
-WORKDIR /app
-COPY . .
-RUN mvn clean package -DskipTests
+# Use Tomcat base image
+FROM tomcat:9.0-jdk17-temurin
 
-# Use a lighter JDK image to run the app
-FROM openjdk:17-jdk-slim
-WORKDIR /app
-COPY --from=builder /app/target/dummy-0.0.1-SNAPSHOT.jar app.jar
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Clean default webapps
+RUN rm -rf /usr/local/tomcat/webapps/*
+
+# Copy your WAR to Tomcat webapps as ROOT.war
+COPY target/dummy-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
+
+EXPOSE 8080
+CMD ["catalina.sh", "run"]
