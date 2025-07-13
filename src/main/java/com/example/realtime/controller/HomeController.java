@@ -23,6 +23,12 @@ public class HomeController {
 	@Autowired
 	private ShowsServices showsServices;
 	
+	@GetMapping("/")
+public String redirectToHome() {
+    return "redirect:/views/home";
+}
+
+
 	@RequestMapping("/views/home")
 	public ModelAndView home(Model model)
 	{
