@@ -32,10 +32,12 @@
         </dependency>
 
         <!-- JSTL support (for tags like c:forEach) -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-        </dependency>
+     <dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>jstl</artifactId>
+    <version>1.2</version>
+</dependency>
+
 
         <!-- Spring Web with embedded Tomcat excluded -->
         <dependency>
